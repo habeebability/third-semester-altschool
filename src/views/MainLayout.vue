@@ -1,6 +1,6 @@
 <template>
   <div class="bg-black w-screen h-screen">
-    <nav class="p-3 h-1/6">
+    <nav class="p-3 h-1/6 sticky top-0 z-20 bg-black">
       <div class="flex justify-center md:justify-around">
         <mdicon class="hidden md:block text-white cursor-pointer" name="counter" size="50" />
         <div class="flex space-x-10">

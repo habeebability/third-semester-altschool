@@ -8,8 +8,8 @@ const { counter, increment, decrement, reset, setValue } = useCounterStore()
 </script>
 
 <template>
-  <main class="flex justify-center items-center bg-black h-screen w-screen relative">
-    <div class="flex justify-between md:justify-around items-center w-full p-5">
+  <main class="flex justify-center items-start bg-black h-screen w-screen">
+    <div class="flex justify-between md:justify-around items-center w-full p-5 relative">
       <transition name="fade">
         <mdicon
           @click.prevent="decrement"
@@ -40,7 +40,12 @@ const { counter, increment, decrement, reset, setValue } = useCounterStore()
           <transition name="fade">
             <div class="flex">
               <div>
-                <input type="number" class="p-3" placeholder="set number" v-model="store.state.val" />
+                <input
+                  type="number"
+                  class="p-3 w-20"
+                  placeholder="set number"
+                  v-model="store.state.val"
+                />
               </div>
             </div>
           </transition>
