@@ -1,37 +1,12 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import MainLayout from './views/MainLayout.vue'
 </script>
 
 <template>
-  <RouterView v-slot="{ Component }">
-    <transition name="slide" mode="out-in">
-      <Component :is="Component" />
-    </transition>
-  </RouterView>
+  <MainLayout />
 </template>
 
 <style scoped>
-/* transition name is fade */
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease-in-out;
-}
-
-/* transition name is slide */
-.slide-enter-from,
-.slide-leave-to {
-  opacity: 0;
-  transform: translateX(-100%);
-}
-.slide-enter-active,
-.slide-leave-active {
-  transition: 0.5s ease-in-out;
-}
-
 header {
   line-height: 1.5;
   max-height: 100vh;

@@ -1,37 +1,55 @@
 <script setup>
-import { ref } from 'vue'
-const counter = ref(0)
+import { useStore } from 'vuex'
 
-const increment = () => {
-  counter.value++
-}
-const decrement = () => {
-  counter.value--
-}
+import useCounterStore from '../composables/counter'
+
+const store = useStore()
+const { counter, increment, decrement, reset, setValue } = useCounterStore()
 </script>
 
 <template>
   <main class="flex justify-center items-center bg-black h-screen w-screen relative">
-    <div class="py-2 absolute top-0">
-      <mdicon @click.prevent="increment" class="text-white cursor-pointer" name="reset" size="50" />
-    </div>
-    <div class="flex justify-between items-center w-full p-5">
+    <div class="flex justify-between md:justify-around items-center w-full p-5">
       <transition name="fade">
         <mdicon
           @click.prevent="decrement"
           class="text-white cursor-pointer"
           name="minus"
-          size="50"
+          size="60"
         />
       </transition>
 
       <transition name="fade">
-        <h1 class="text-3xl md:text-9xl font-semibold text-white cursor-pointer">{{ counter }}</h1>
+        <div>
+          <h1 class="text-3xl md:text-9xl font-semibold text-white cursor-pointer">{{ counter }}</h1>
+        </div>
       </transition>
 
       <transition name="fade">
-        <mdicon @click.prevent="increment" class="text-white cursor-pointer" name="plus" size="50" />
+        <mdicon @click.prevent="increment" class="text-white cursor-pointer" name="plus" size="60" />
       </transition>
+    </div>
+
+    <div class="py-2 absolute bottom-10">
+      <div class="flex space-x-10">
+        <div>
+          <mdicon @click.prevent="reset" class="text-white cursor-pointer" name="reload" size="50" />
+          <label class="text-white">Reset</label>
+        </div>
+        <div class="flex">
+          <transition name="fade">
+            <div class="flex">
+              <div>
+                <input type="number" class="p-3" placeholder="set number" v-model="store.state.val" />
+              </div>
+            </div>
+          </transition>
+          <div @click.prevent="setValue(store.state.val)">
+            <mdicon class="text-white cursor-pointer" name="ShapeSquareRoundedPlus" size="50" />
+            <label class="text-white">Set value</label>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 </template>
